@@ -209,12 +209,8 @@ function DescargarArchivo(){
 }
 
 function obtenerTexto(){
-    //alert("hola");
     var ta=document.getElementById(get_vent());
     var contenido=ta.value;//texto de vent actual
-
-    //var a=document.getElementById(get_vent().replace("textarea","a"));
-    //a.text=file.name;
 
     var newpost ={
         Name:"Archivo Python",
@@ -222,14 +218,37 @@ function obtenerTexto(){
         Type:"Python"
     }
 
-    fetch('../tasks', {
+    /*fetch('http://localhost:8080/task', {
         method: 'POST',
-        body: JSON.stringify(newpost),
         headers:{
-          'Content-Type': 'application/json'
-        }
-    }).then(res => res.json())
-    .catch(error => console.error('Error:', error))
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newpost)
+    })*/
+
+    fetch('http://localhost:8080/tasks', {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newpost)
+    })
+    .then(response => response.json())
+    //.then(response => response.json())
+    .then(data=>{
+        console.log(data);
+
+        var consola_py = document.getElementById("consola_python");
+        var str = "-------------------analisis lexico---------------";
+
+        data.Tokens.forEach(token =>{
+                str += `Tokens: ${token.tipoDelToken}\n`;
+        });
+
+        consola_py.innerHTML = str + "\n\n";
+    })
+
+
     //.then(response => view(response));
 /*-----------------------------------------------------------------*/    
     /*var button = document.getElementById('botonpython')
@@ -251,6 +270,9 @@ function obtenerTexto(){
     })*/
 }
 
+var co = document.getElementById("consola_python");
+co.innerHTML = "hola";
+
 /*function obtenerSaludo(){
     var curso = document.getElementById("curso").value;
 
@@ -264,3 +286,4 @@ function obtenerTexto(){
     .catch(error => console.error('Error:', error))
     .then(response => view(response));
 }*/
+

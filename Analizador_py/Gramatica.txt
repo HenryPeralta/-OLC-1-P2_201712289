@@ -1,0 +1,166 @@
+Gramatica
+
+<Inicio> -> public <tipo_public> <Inicio'>
+	   | Epsilon
+
+<Inicio'> -> <Inicio>
+	    | Epsilon
+
+<tipo_public> -> <class>
+		| <interface>
+
+<class> -> class identificador { <Instrucciones_class> }
+
+<Instrucciones_class> -> <metodos> <Instrucciones_class'> 
+			| <declaracion_variables> <Instrucciones_class'>
+			| <funciones> <Instrucciones_class'>
+			| Epsilon
+
+<Instrucciones_class'> -> <Instrucciones_class>
+			 | Epsilon
+
+<interface> -> interface identificador { <Instrucciones_funciones> }
+
+<Instrucciones_funciones> -> <funciones> <Instrucciones_funciones'>
+			     | Epsilon
+
+<Instrucciones_funciones'> -> <Instrucciones_funciones>
+			      | Epsilon 
+
+<funciones> -> public <tipo_metodo> identificador ( <parametros> );
+
+<metodos> -> public <metodos2>
+
+<metodos2> -> <cuerpo_metodo>
+	      | static void main ( String [] args ) { <Instrucciones> }
+
+<cuerpo_metodo> -> <tipo_metodo> identificador ( <parametros> ) {<Instrucciones>}
+
+<tipo_metodo> -> String
+	        | int
+	        | char
+	        | double
+	        | boolean
+	        | void
+
+<parametros> -> <tipo_dato> identificador <parametros2>
+		| Epsilon
+
+<parametros2> -> , <tipo_dato> identificador <parametros2'>
+		 | Epsilon
+
+<parametros2'> -> <parametros2>
+		  | Epsilon
+
+<tipo_dato> -> String
+	      | int
+	      | char
+	      | double
+	      | boolean
+
+<Instrucciones> -> <declaracion_variables> <Instrucciones'>
+		   | <sentencia_for> <Instucciones'>
+		   | <sentencia_while> <Instrucciones'>
+		   | <sentencia_do> <Instrucciones'>
+		   | <sentencia_if> <Instrucciones'>
+		   | <imprimir> <Instrucciones'>
+		   | return <expresion>; <instrucciones'>
+		   | continue;
+		   | break;
+		   | Epsilon
+
+<Instrucciones'> -> <Instrucciones>
+		    | Epsilon
+
+<sentencia_for> -> for ( <declaracion_variable> ; <expresion> ; identificador <mas_mas> ) { <Instrucciones> }
+
+<mas_mas> -> ++
+	    | --
+
+<sentencia_while> -> while ( <expresion> ) { <Instrucciones> }
+
+<sentencia_do> -> do { <Instrucciones> } while ( <expresion> ) ;
+
+<sentencia_if> -> if ( <expresion> ) { <Instrucciones> } <else>
+
+<else> -> else <opcion_if>
+	 | Epsilon
+
+<opcion_if> -> <sentencia_if>
+	      | { <Instrucciones> }
+
+<imprimir> -> System . out . print<ln> ( <expresion> ) ;
+
+<ln> -> ln
+       | Epsilon
+
+<declaracion_variables> -> <tipo_dato> identificador <opcion_variable> ;
+
+<opcion_variable> -> = <expresion>
+		     | <mas_variables>
+		     | Epsilon
+
+<mas_variables> -> , identificador <opcion_variable> 
+
+<expresion> -> <E> < logico >
+
+<logico > -> && <expresion>
+	    | || <expresion>
+	    | ! <expresion>
+	    | ^ <expresion>
+	    | > <expresion>
+	    | < <expresion>
+	    | >= <expresion>
+	    | <= <expresion>
+	    | == <expresion>
+	    | != <expresion>
+	    | Epsilon
+
+<E> -> <T> <EP>
+
+<EP> -> + <T> <EP>
+      | - <T> <EP>
+      | Epsilon
+
+<T> -> <F> <TP>
+
+<TP> -> * <F> <TP>
+      | / <F> <TP>
+      | Epsilon
+
+<F> -> <valor>
+     | numero_entero
+     | numero_decimal
+     | cadena
+     | true
+     | false
+     | - <expresion>
+     | ! <expresion>
+     | ( <expresion> )
+
+<valor> -> identificador <valor2>
+
+<valor2> -> ( <lista_expresiones> )
+	   | ++;
+	   | --; 
+	   | Epsilon
+
+<lista_expresiones> -> <expresion> <lista_expresiones2>
+	              | Epsilon
+
+<lista_expresion2> -> , <expresion> <lista_expresion2>
+		     | Epsilon 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

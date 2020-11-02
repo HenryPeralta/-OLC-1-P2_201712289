@@ -12,10 +12,10 @@ const valor_tokens = {
     Parentesis_Cerrado: 11,
     Llave_Abierta: 12,
     Llave_Cerrada: 13,
-    Mayor: 14,
-    Menor: 15,
-    Mayor_Que: 16,
-    Menor_Que: 17,
+    Mayor_Que: 14,
+    Menor_Que: 15,
+    Mayor_Igual_Que: 16,
+    Menor_Igual_Que: 17,
     Signo_Igual: 18,
     Signo_Mas: 19,
     Signo_Menos: 20,
@@ -29,7 +29,15 @@ const valor_tokens = {
     Igual_Igual: 28,
     Diferente: 29,
     Mas_Mas: 30,
-    Menos_Menos: 31 
+    Menos_Menos: 31,
+    Guion_Bajo: 32,
+    Not: 33,
+    Xor: 34,
+    Comentario_Unilinea: 35,
+    Comentario_Multilinea: 36,
+    Tipo_De_Dato: 37,
+    Ciclos: 38,
+    Sentencias: 39
 }
 
 class Tokens{
@@ -40,6 +48,7 @@ class Tokens{
         this.fila = fila;
         this.columna = columna;
         this.indice = indice;
+        this.valor = this.getTipo()
     }
 
     getIndice(){
@@ -60,68 +69,84 @@ class Tokens{
 
     getTipo(){
         switch(this.tipoDelToken){
-            case tokens.Identificador:
+            case valor_tokens.Identificador:
                 return "Identificador";
-            case tipoDelToken.Numero_Entero:
+            case valor_tokens.Numero_Entero:
                 return  "Numero Entero";
-            case tipoDelToken.Numero_Decimal:
+            case valor_tokens.Numero_Decimal:
                 return "Numero Decimal";
-            case tipoDelToken.Cadena:
+            case valor_tokens.Cadena:
                 return "Cadena";
-            case tipoDelToken.Caracter:
+            case valor_tokens.Caracter:
                 return "Caracter";
-            case tipoDelToken.Palabra_Reservada:
+            case valor_tokens.Palabra_Reservada:
                 return "Palabra Reservada";
-            case tipoDelToken.Coma:
+            case valor_tokens.Coma:
                 return "Coma";
-            case tipoDelToken.Punto:
+            case valor_tokens.Punto:
                 return "Punto";
-            case tipoDelToken.PuntoyComa:
+            case valor_tokens.PuntoyComa:
                 return "Punto y Coma";
-            case tipoDelToken.Parentesis_Abierto:
+            case valor_tokens.Parentesis_Abierto:
                 return "Parentesis Abierto";
-            case tipoDelToken.Parentesis_Cerrado:
+            case valor_tokens.Parentesis_Cerrado:
                 return "Parentesis Cerrado";
-            case tipoDelToken.Llave_Abierta:
+            case valor_tokens.Llave_Abierta:
                 return "Llave Abierta";
-            case tipoDelToken.Llave_Cerrada:
+            case valor_tokens.Llave_Cerrada:
                 return "Llave Cerrada";
-            case tipoDelToken.Mayor:
-                return "Mayor";
-            case tipoDelToken.Menor:
-                return "Menor";
-            case tipoDelToken.Mayor_Que:
+            case valor_tokens.Mayor_Que:
                 return "Mayor Que";
-            case tipoDelToken.Menor_Que:
+            case valor_tokens.Menor_Que:
                 return "Menor Que";
-            case tipoDelToken.Signo_Igual:
+            case valor_tokens.Mayor_Igual_Que:
+                return "Mayor Igual Que";
+            case valor_tokens.Menor_Igual_Que:
+                return "Menor Igual Que";
+            case valor_tokens.Signo_Igual:
                 return "Signo Igual";
-            case tipoDelToken.Signo_Mas:
+            case valor_tokens.Signo_Mas:
                 return "Signo Mas";
-            case tipoDelToken.Signo_Menos:
+            case valor_tokens.Signo_Menos:
                 return "Signo Menos";
-            case tipoDelToken.Signo_Por:
+            case valor_tokens.Signo_Por:
                 return "Signo Por";
-            case tipoDelToken.Diagonal:
+            case valor_tokens.Diagonal:
                 return "Diagonal";
-            case tipoDelToken.Corchete_Abierto:
+            case valor_tokens.Corchete_Abierto:
                 return "Corchete Abierto";
-            case tipoDelToken.Corchete_Cerrado:
+            case valor_tokens.Corchete_Cerrado:
                 return "Corchete Cerrado";
-            case tipoDelToken.Dos_Puntos:
+            case valor_tokens.Dos_Puntos:
                 return "Dos Puntos";
-            case tipoDelToken.And:
+            case valor_tokens.And:
                 return "And";
-            case tipoDelToken.Or:
+            case valor_tokens.Or:
                 return "Or";
-            case tipoDelToken.Igual_Igual:
+            case valor_tokens.Igual_Igual:
                 return "Igual Igual";
-            case tipoDelToken.Diferente:
+            case valor_tokens.Diferente:
                 return "Diferente";
-            case tipoDelToken.Mas_Mas:
+            case valor_tokens.Mas_Mas:
                 return "Mas Mas";
-            case tipoDelToken.Menos_Menos:
+            case valor_tokens.Menos_Menos:
                 return "Menos Menos";
+            case valor_tokens.Guion_Bajo:
+                return "Guion Bajo";
+            case valor_tokens.Not:
+                return "Not";
+            case valor_tokens.Xor:
+                return "Xor";
+            case valor_tokens.Comentario_Unilinea:
+                return "Comentario Unilinea";
+            case valor_tokens.Comentario_Multilinea:
+                return "Comentario Multilinea";
+            case valor_tokens.Tipo_De_Dato:
+                return "Tipo de Dato";
+            case valor_tokens.Ciclos:
+                return "Ciclo";
+            case valor_tokens.Sentencias:
+                return "Sentencia";
             default:
                 return "Desconocido";    
         }

@@ -1,8 +1,8 @@
-const errores = {
+const valor_error = {
     Desconocido: 1
 }
 
-module.exports = class Error{
+class Error{
 
     constructor(tipoDelToken, auxlex, fila, columna, indice){
         this.tipoDelToken = tipoDelToken;
@@ -10,6 +10,7 @@ module.exports = class Error{
         this.fila = fila;
         this.columna = columna;
         this.indice = indice;
+        this.valor = this.getTipo();
     }
 
     getIndice(){
@@ -30,10 +31,12 @@ module.exports = class Error{
 
     getTipo(){
         switch(this.tipoDelToken){
-            case tipoDelToken.Desconocido:
+            case valor_error.Desconocido:
                 return "Desconocido";
             default:
                 return "Desconocido";    
         }
     }
 }
+
+module.exports = {valor_error, Error}
