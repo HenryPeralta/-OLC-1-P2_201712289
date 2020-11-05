@@ -16,9 +16,19 @@ type task struct {
 	Content string `json:"Content"`
 	Type    string `json:"Type"`
 	Token[]token `json:"Tokens"`
+	Error[]errors `json:"Error"`
 }
 
 type token struct {
+	Auxlex string `json:"auxlex"`
+	Fila int `json:"fila"`
+	Columna int `json:"columna"`
+	Indice int `json:"indice"`
+	TipoToken int `json:"tipoDelToken"`
+	Valor string `json:"valor"`
+}
+
+type errors struct {
 	Auxlex string `json:"auxlex"`
 	Fila int `json:"fila"`
 	Columna int `json:"columna"`

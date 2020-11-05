@@ -1,40 +1,38 @@
 Gramatica
 
-<Inicio> -> public <tipo_public> <Inicio'>
-	   | Epsilon
+<Inicio> -> <List_Plantillas>
 
-<Inicio'> -> <Inicio>
-	    | Epsilon
+<List_Plantillas> -> <Plantilla> <Plantillas2>
 
-<tipo_public> -> <class>
-		| <interface>
+<Plantillas2> -> <Plantilla> <Plantillas2>
+		| Epsilon 
 
-<class> -> class identificador { <Instrucciones_class> }
+<Plantilla> -> public <tipo_public>
+
+<tipo_public> -> class identificador { <Instrucciones_class> }
+		| interface identificador { <Instrucciones_funciones> }
 
 <Instrucciones_class> -> <metodos> <Instrucciones_class'> 
 			| <declaracion_variables> <Instrucciones_class'>
-			| <funciones> <Instrucciones_class'>
+			| <Llamada> <Instrucciones_clase'>
+			| <Instrucciones> <Instrucciones_clase' >
 			| Epsilon
 
 <Instrucciones_class'> -> <Instrucciones_class>
 			 | Epsilon
 
-<interface> -> interface identificador { <Instrucciones_funciones> }
-
 <Instrucciones_funciones> -> <funciones> <Instrucciones_funciones'>
 			     | Epsilon
 
-<Instrucciones_funciones'> -> <Instrucciones_funciones>
+<Instrucciones_funciones'> -> <funciones> <Instrucciones_funciones'>
 			      | Epsilon 
 
 <funciones> -> public <tipo_metodo> identificador ( <parametros> );
 
 <metodos> -> public <metodos2>
 
-<metodos2> -> <cuerpo_metodo>
+<metodos2> -> <tipo_metodo> identificador ( <parametros> ) {<Instrucciones>}
 	      | static void main ( String [] args ) { <Instrucciones> }
-
-<cuerpo_metodo> -> <tipo_metodo> identificador ( <parametros> ) {<Instrucciones>}
 
 <tipo_metodo> -> String
 	        | int
@@ -43,14 +41,14 @@ Gramatica
 	        | boolean
 	        | void
 
-<parametros> -> <tipo_dato> identificador <parametros2>
+
+<parametros> -> <parametro1> <parametros2>
 		| Epsilon
 
-<parametros2> -> , <tipo_dato> identificador <parametros2'>
-		 | Epsilon
+<parametro1> -> <tipo_dato> identificador
 
-<parametros2'> -> <parametros2>
-		  | Epsilon
+<parametros2> -> , <parametro1> <parametros2>
+		 | Epsilon
 
 <tipo_dato> -> String
 	      | int
@@ -58,19 +56,24 @@ Gramatica
 	      | double
 	      | boolean
 
-<Instrucciones> -> <declaracion_variables> <Instrucciones'>
-		   | <sentencia_for> <Instucciones'>
-		   | <sentencia_while> <Instrucciones'>
-		   | <sentencia_do> <Instrucciones'>
-		   | <sentencia_if> <Instrucciones'>
-		   | <imprimir> <Instrucciones'>
-		   | return <expresion>; <instrucciones'>
+<Instrucciones> -> <declaracion_variables> <Instrucciones>
+		   | <sentencia_for> <Instucciones>
+		   | <sentencia_while> <Instrucciones>
+		   | <sentencia_do> <Instrucciones>
+		   | <sentencia_if> <Instrucciones>
+		   | <imprimir> <Instrucciones>
+		   | return <expresion>; <instrucciones>
 		   | continue;
 		   | break;
 		   | Epsilon
 
-<Instrucciones'> -> <Instrucciones>
-		    | Epsilon
+<Llamada> -> identificador <opcion_car>
+	    | Epsilon
+
+<opcion_car> -> = <expresion> ;
+	       | ( <lista_expresiones> ) ;
+	       | ++;
+	       | --; 
 
 <sentencia_for> -> for ( <declaracion_variable> ; <expresion> ; identificador <mas_mas> ) { <Instrucciones> }
 
@@ -94,15 +97,15 @@ Gramatica
 <ln> -> ln
        | Epsilon
 
-<declaracion_variables> -> <tipo_dato> identificador <opcion_variable> ;
+<declaracion_variables> -> <tipo_dato> identificador <asignacion> <opcion_variable> ;
 
-<opcion_variable> -> = <expresion>
-		     | <mas_variables>
+<asignacion> -> = <expresion>
+	       | Epsilon
+
+<opcion_variable> -> , identificador <asignacion> <opcion_variable>
 		     | Epsilon
 
-<mas_variables> -> , identificador <opcion_variable> 
-
-<expresion> -> <E> < logico >
+<expresion> -> <E> <logico>
 
 <logico > -> && <expresion>
 	    | || <expresion>
@@ -141,8 +144,8 @@ Gramatica
 <valor> -> identificador <valor2>
 
 <valor2> -> ( <lista_expresiones> )
-	   | ++;
-	   | --; 
+	   | ++
+	   | -- 
 	   | Epsilon
 
 <lista_expresiones> -> <expresion> <lista_expresiones2>

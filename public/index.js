@@ -87,6 +87,7 @@ function index(pestanias, pestania) {
         }).on('change', editor => {
             tact.value=editor.getValue();
         });
+
     }catch(error) {}
 }
 
@@ -239,13 +240,19 @@ function obtenerTexto(){
         console.log(data);
 
         var consola_py = document.getElementById("consola_python");
-        var str = "-------------------analisis lexico---------------";
+        var str = "---------------------Analisis Lexico---------------------\n\n";
 
         data.Tokens.forEach(token =>{
-                str += `Tokens: ${token.tipoDelToken}\n`;
+                str += `No:${token.indice}  Tokens: ${token.valor}  Auxlex: ${token.auxlex}  Fila: ${token.fila}  Columna: ${token.columna}\n\n`;
         });
 
         consola_py.innerHTML = str + "\n\n";
+
+        data.Error.forEach(errores =>{
+            consola_py.innerHTML += "Error Lexico:  "
+            consola_py.innerHTML += `No:${errores.indice}  Tokens: ${errores.valor}  Auxlex: ${errores.auxlex}  Fila: ${errores.fila}  Columna: ${errores.columna}\n\n`;
+        });
+
     })
 
 
@@ -269,9 +276,6 @@ function obtenerTexto(){
             .then(data => console.log(data))
     })*/
 }
-
-var co = document.getElementById("consola_python");
-co.innerHTML = "hola";
 
 /*function obtenerSaludo(){
     var curso = document.getElementById("curso").value;
