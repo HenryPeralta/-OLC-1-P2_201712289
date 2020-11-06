@@ -253,6 +253,12 @@ function obtenerTexto(){
             consola_py.innerHTML += `No:${errores.indice}  Tokens: ${errores.valor}  Auxlex: ${errores.auxlex}  Fila: ${errores.fila}  Columna: ${errores.columna}\n\n`;
         });
 
+        consola_py.innerHTML += "\n---------------------Analisis Sintactico---------------------\n\n";
+
+        data.Respuesta.forEach(respuesta => {
+            consola_py.innerHTML += respuesta + "\n";
+        })
+
     })
 
 
@@ -275,6 +281,32 @@ function obtenerTexto(){
             .then(res => res.json())
             .then(data => console.log(data))
     })*/
+}
+
+function DescargarArchivoPython(){
+
+    fetch('http://localhost:8080/tasks')
+    .then(response => response.json())
+    .then(data=>{
+        console.log(data);
+
+        var nombre="Traduccion_Python.py";//nombre del archivo
+        var file=new Blob([data.Traduccion], {type: 'text/plain'});
+
+        if(window.navigator.msSaveOrOpenBlob){
+        window.navigator.msSaveOrOpenBlob(file, nombre);
+        }else{
+            var a=document.createElement("a"),url=URL.createObjectURL(file);
+            a.href=url;
+            a.download=nombre;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(function(){
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);  
+            },0); 
+        }
+    })
 }
 
 /*function obtenerSaludo(){

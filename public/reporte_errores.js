@@ -9,4 +9,13 @@ fetch('http://localhost:8080/tasks')
 
     document.getElementById("tabla").innerHTML = err;
 
+    var err_s = "";
+    contador = 1;
+    data.ErroresSintacticos.forEach(error_sintactico =>{
+       err_s += "<tr><td>" +contador + "</td><td>" + error_sintactico.fila + "</td><td>" + error_sintactico.columna + "</td><td>" + error_sintactico.descripcion + "</td></tr>"; 
+       contador +=1
+    });
+
+    document.getElementById("tabla_sintactico").innerHTML = err_s;
+
 })

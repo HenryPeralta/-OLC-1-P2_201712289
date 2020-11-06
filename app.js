@@ -30,9 +30,9 @@ app.post('/node/', function (req, res) {
 
     const analizadorSintactico = new Sintactico();
     analizadorSintactico.analizar(analizadorLexico.lista_de_tokens);
-    console.log(analizadorSintactico.listaErrores);
+    //console.log(analizadorSintactico.listaErrores);
 
-    res.json( {...req.body,Tokens: analizadorLexico.lista_de_tokens, Error: analizadorLexico.lista_de_errores} );
+    res.json( {...req.body,Tokens: analizadorLexico.lista_de_tokens, Error: analizadorLexico.lista_de_errores , Respuesta: analizadorSintactico.listaConsola, ErroresSintacticos: analizadorSintactico.listaErrores, Traduccion: analizadorSintactico.traduccion} );
 });
 
 //app.listen(port,ip, async () => {

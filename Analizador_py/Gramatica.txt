@@ -12,14 +12,11 @@ Gramatica
 <tipo_public> -> class identificador { <Instrucciones_class> }
 		| interface identificador { <Instrucciones_funciones> }
 
-<Instrucciones_class> -> <metodos> <Instrucciones_class'> 
-			| <declaracion_variables> <Instrucciones_class'>
-			| <Llamada> <Instrucciones_clase'>
-			| <Instrucciones> <Instrucciones_clase' >
+<Instrucciones_class> -> <metodos> <Instrucciones_class> 
+			| <declaracion_variables> <Instrucciones_class>
+			| <Llamada> <Instrucciones_class>
+			| <Instrucciones> <Instrucciones_class>
 			| Epsilon
-
-<Instrucciones_class'> -> <Instrucciones_class>
-			 | Epsilon
 
 <Instrucciones_funciones> -> <funciones> <Instrucciones_funciones'>
 			     | Epsilon
@@ -35,6 +32,7 @@ Gramatica
 	      | static void main ( String [] args ) { <Instrucciones> }
 
 <tipo_metodo> -> String
+		| string
 	        | int
 	        | char
 	        | double
@@ -51,6 +49,7 @@ Gramatica
 		 | Epsilon
 
 <tipo_dato> -> String
+	      | string
 	      | int
 	      | char
 	      | double

@@ -73,6 +73,7 @@ module.exports = class Analizador_Sintactico{
 
         this.traduccion = this.Inicio();
         console.log(this.traduccion + "------------>");
+        console.log(this.listaErrores);
 
         console.log(this.listaConsola);
         this.listaConsola.push(this.existeError ? "El Analisis Sintactico tiene Errores" : "El Analisis Sintactico fue Exitoso!!!!!");
@@ -733,7 +734,7 @@ module.exports = class Analizador_Sintactico{
             traducido += "\n";
             traducido += this.match(valor_tokens.PuntoyComa);
         }else if(this.tokenActual.auxlex == "println"){
-            traducido += this.espacio + this.tokenActual.auxlex;
+            traducido += this.espacio + "print";
             traducido += this.match(valor_tokens.Palabra_Reservada, "println");
             traducido += this.tokenActual.auxlex;
             traducido += this.match(valor_tokens.Parentesis_Abierto);
@@ -914,6 +915,7 @@ module.exports = class Analizador_Sintactico{
             traducido += this.tokenActual.auxlex;
             traducido += this.match(valor_tokens.Parentesis_Abierto);
             traducido += this.expresion();
+            traducido += this.tokenActual.auxlex;
             traducido += this.match(valor_tokens.Parentesis_Cerrado);
         }
         else if(this.comparar(valor_tokens.Identificador)){

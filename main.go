@@ -17,6 +17,9 @@ type task struct {
 	Type    string `json:"Type"`
 	Token[]token `json:"Tokens"`
 	Error[]errors `json:"Error"`
+	Respuesta[]string `json:"Respuesta"`
+	ErroresSintacticos[]error_sintactico `json:"ErroresSintacticos"`
+	Traduccion string `json:"Traduccion"`
 }
 
 type token struct {
@@ -35,6 +38,12 @@ type errors struct {
 	Indice int `json:"indice"`
 	TipoToken int `json:"tipoDelToken"`
 	Valor string `json:"valor"`
+}
+
+type error_sintactico struct {
+	Fila int `json:"fila"`
+	Columna int `json:"columna"`
+	Descripcio string `json:"descripcion"`
 }
 
 var tarea task
