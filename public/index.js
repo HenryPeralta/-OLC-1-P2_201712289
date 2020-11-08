@@ -323,3 +323,47 @@ function DescargarArchivoPython(){
     .then(response => view(response));
 }*/
 
+function mandartextojison(){
+    var ta=document.getElementById(get_vent());
+    var contenido=ta.value;//texto de vent actual
+
+    var newpost ={
+        Name:"Archivo JavaScript",
+        Content: contenido,
+        Type:"JavaScript"
+    }
+
+    fetch('http://localhost:8080/jison', {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newpost)
+    })
+    .then(response => response.json())
+    //.then(response => response.json())
+    .then(data=>{
+        console.log(data);
+
+        var consola_js = document.getElementById("consola_javascript");
+        var str = "---------------------Analisis Lexico---------------------\n\n";
+
+        data.Tokens.forEach(token =>{
+                str += `Tokens: ${token.tipoDelToken}  Auxlex: ${token.auxlex}  Fila: ${token.fila}  Columna: ${token.columna}\n\n`;
+        });
+
+        consola_js.innerHTML = str + "\n\n";
+
+        /*data.Error.forEach(errores =>{
+            consola_py.innerHTML += "Error Lexico:  "
+            consola_py.innerHTML += `No:${errores.indice}  Tokens: ${errores.valor}  Auxlex: ${errores.auxlex}  Fila: ${errores.fila}  Columna: ${errores.columna}\n\n`;
+        });*/
+
+        /*consola_py.innerHTML += "\n---------------------Analisis Sintactico---------------------\n\n";
+
+        data.Respuesta.forEach(respuesta => {
+            consola_py.innerHTML += respuesta + "\n";
+        })*/
+
+    })
+}

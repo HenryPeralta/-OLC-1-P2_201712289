@@ -1,0 +1,53 @@
+/*fggghfhfh*/
+//fsfsfsf
+public class ide {
+    int b = 3;
+    int p = (6 / 0);
+    System.out.print("bobo");
+    if(a^b){
+        contador ++;
+        int p = 6 + ;
+        int g =0, y, z=9;
+        for( double x = 20; x > 5*4; x --){
+            //hola
+        }
+    }
+    boolean prueba = true;
+    while ( prueba ) {
+        System.out.println("Esto lo verás una vez");
+        prueba = false;
+    }
+    /*jgfjjh*/
+    public void suma(int x, int y){
+        public void suma(int x, int y);
+    }
+    int h = 0 ;
+    do{
+        System.out.println ("Contador" + (contador + 1) );
+        contador ++;
+        //fhghhfh
+    } while (contador<10);
+    return;
+    return 4+ 5;
+    return “Cadena”;
+    return var;
+    continue;
+    break; /*trtytryry*/
+    h = -1;
+    l = p-5;
+}
+//hjyjghjjj
+public class pop {
+    int x=0, y, z=9;
+    boolean ft = true;
+    g = 1.2;
+    x = true && false;
+    mifuncion(x, “cadena”, true);
+    public static void main(String[] args) {
+    }
+}
+public interface olo{
+//hfhfhhh
+@
+}
+
