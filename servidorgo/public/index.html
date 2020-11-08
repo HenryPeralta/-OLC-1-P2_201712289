@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="index.css"/>
+        <script type="text/javascript" src="./jquery-1.7.2.min.js"></script>
+
+        <script src="./codemirror/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="./codemirror//lib//codemirror.css">
+        <link rel="stylesheet" href="./codemirror//theme//eclipse.css">
+        <script src="./codemirror/mode/clike/clike.js"></script>
+    <title>Proyecto 2</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container logo-nav-container">
+            <nav class="navegation">
+                <ul>
+                    <li class="item"><a>Menu</a>
+                        <ul class="despliege">
+                            <li>
+                                <form action="">
+                                    <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btnp">
+                                    <a onclick="document.getElementById('fileInput').click()">abrir</a>
+                                </form>
+                            </li>
+                            <li><a href="javascript:DescargarArchivo();">Guardar</a></li>
+                            <li><a>Guardar Como</a></li>
+                        </ul>
+                    </li>
+                    <li class="item"><a>Descargar</a>
+                        <ul class="despliege">
+                            <li><a>Ambos</a></li>
+                            <li><a href="javascript:mandartextojison();">JavaScript</a></li>
+                            <li><a href="javascript:obtenerTexto();">Python</a></li>
+                        </ul>
+                    </li>
+                    <li class="item"><a href="javascript:agregar();">Agregar Pestaña</a></li>
+                    <li class="item"><a href="javascript:quitar();">Quitar Pestaña</q></a></li>
+                    <li class="item"><a>Reportes py</q></a>
+                        <ul class="despliege">
+                            <li><a href="reporte_tokens.html" target="blank">Reporte de Tokens</a></li>
+                            <li><a href="reporte_errores.html" target="blank">Reporte de Errores</a></li>
+                            <li><a href="javascript:DescargarArchivoPython()">Traduccion py</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <p class="nombre">Henry Peralta 201712289</p>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div id="contenedor">
+                <div id="pestanas">
+                    <ul id=lista>
+                    </ul>
+                </div>
+                <div id="contenidopestanas">
+                </div>
+            </div>
+            <div class="contenedor2">
+                Consola Python
+                <br>
+                <textarea id="consola_python" class="salida_python" rows="18"></textarea>
+                <br>
+                Consola JavaScript
+                <br>
+                <textarea id="consola_javascript" class="salida_javascript" rows="18"></textarea>
+            </div>
+        </div>
+    <footer class="footer">
+        <div class="conteiner">
+            <p>Pagina diseñada por mi</p>
+        </div>
+    </footer>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
