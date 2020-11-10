@@ -17,6 +17,7 @@ app.get('/node', (req, res) =>{
     res.json(tarea)
 });
 
+
 //const ip   = process.env.NODEIP || "192.168.1.17";
 //const port = process.env.NODEPORT || 3000;
 
