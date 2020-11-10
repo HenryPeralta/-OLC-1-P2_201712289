@@ -400,6 +400,7 @@ module.exports = class Analizador_Sintactico{
             traducido += this.espacio + this.tokenActual.auxlex + " ";
             traducido += this.match(valor_tokens.Palabra_Reservada, "return");
             traducido += this.expresion();
+            traducido += this.Instrucciones();
 
             traducido += "\n";
             traducido += this.match(valor_tokens.PuntoyComa);
@@ -408,11 +409,13 @@ module.exports = class Analizador_Sintactico{
             traducido += this.espacio + this.tokenActual.auxlex + "\n";
             traducido += this.match(valor_tokens.Palabra_Reservada, "continue");
             traducido += this.match(valor_tokens.PuntoyComa);
+            traducido += this.Instrucciones();
         }
         else if(this.tokenActual.auxlex == "break"){
             traducido += this.espacio + this.tokenActual.auxlex + "\n";
             traducido += this.match(valor_tokens.Palabra_Reservada, "break");
             traducido += this.match(valor_tokens.PuntoyComa);
+            traducido += this.Instrucciones();
         }
         else if(this.comparar(valor_tokens.Identificador)){
             traducido += this.Llamada();
